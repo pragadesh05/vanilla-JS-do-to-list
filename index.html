@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla JS Real-Time To-Do List</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Google Icons for checkmark and trash -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* Custom font import */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b254d;
+        }
+        .task-item-shadow {
+            box-shadow: 0 4px 6px -1px rgba(206, 43, 43, 0.1), 0 2px 4px -2px rgba(123, 38, 38, 0.06);
+            transition: transform 0.2s;
+        }
+        .task-item-shadow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(229, 83, 83, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+        }
+        .completed-text {
+            text-decoration: line-through;
+            color: #3d76da; /* Gray-400 */
+        }
+        .material-icons {
+            font-size: 1.25rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 sm:p-8 flex justify-center items-start">
+
+    <div class="w-full max-w-lg bg-white rounded-xl p-6 md:p-8 task-item-shadow mt-10">
+        <h1 class="text-3xl font-extrabold text-gray-800 mb-2">My Daily Tasks</h1>
+        <p id="user-info" class="text-sm text-gray-500 mb-6 truncate">Loading user data...</p>
+
+        <!-- Task Input Section -->
+        <div class="flex space-x-2 mb-8">
+            <input type="text" id="task-input" placeholder="What needs to be done?"
+                   class="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150"
+                   maxlength="100">
+            <button id="add-task-btn"
+                    class="bg-blue-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition duration-150 shadow-md hover:shadow-lg disabled:opacity-50">
+                Add
+            </button>
+        </div>
+
+        <!-- Task List Container -->
+        <div id="task-list" class="space-y-3">
+            <p id="loading-message" class="text-center text-gray-500">Loading tasks...</p>
+            <!-- Tasks will be rendered here by JavaScript -->
+        </div>
+
+        <!-- Empty State Message -->
+        <div id="empty-state" class="text-center p-8 border-2 border-dashed border-gray-200 rounded-lg mt-6 hidden">
+            <span class="material-icons text-4xl text-gray-400 mb-2">check_circle_outline</span>
+            <p class="text-gray-500 font-medium">You're all caught up! Add a new task above.</p>
+        </div>
+    </div>
